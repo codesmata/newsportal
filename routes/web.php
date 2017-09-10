@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 $excludeRoutes = ['except' => ['edit', 'update']];
-Route::resouce('/news', 'NewsController', $excludeRoutes);
+Route::resource('/news', 'NewsController', $excludeRoutes);
 
-Route::auth();
+Auth::routes();
+
+Route::get('/success', 'Auth\RegisterController@success')->name('success');
+
+Route::get('/home', 'HomeController@index')->name('home');
