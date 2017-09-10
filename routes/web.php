@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+$excludeRoutes = ['except' => ['edit', 'update']];
+Route::resouce('/news', 'NewsController', $excludeRoutes);
+
+Route::auth();
