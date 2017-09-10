@@ -22,4 +22,7 @@ Auth::routes();
 
 Route::get('/success', 'Auth\RegisterController@success')->name('success');
 
+Route::get('/verify/{email}', 'Auth\RegisterController@verify')->name('verify-email');
+Route::post('/verify/{email}/create-password', 'Auth\RegisterController@createPassword');
+
 Route::get('/home', 'HomeController@index')->name('home');

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegistered;
 use App\Http\Requests\SignupRequest;
 use App\User;
-use App\Events\RegisteredUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -38,7 +38,8 @@ class RegisterController extends Controller
      */
     public function register(SignupRequest $request)
     {
-        event(new RegisteredUser($user = $this->create($request->all())));
+        $request['email_token'] = password_hash($request['email'], PASSWORD_BCRYPT);
+        event(new UserRegistered($user = $this->create($request->all())));
         return redirect()->route('success')->with('email', $request['email']);
     }
 
