@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-use PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class Mailer
 {
@@ -12,15 +12,14 @@ class Mailer
         $mail->isSMTP();
         $mail->Host = config('mail.host');
         $mail->Port = config('mail.port');
-        $mail->SMTPSecure = config('mail.port');
-
+        $mail->SMTPSecure = config('mail.encryption');
         $mail->SMTPAuth = true;
         $mail->Username = config('mail.username');
         $mail->Password = config('mail.password');
         $mail->setFrom(config('mail.username'), 'News Portal');
         $mail->addAddress($parameters['address'], $parameters['name']);
         $mail->Subject = $parameters['subject'];
-        $mail->msgHTML($parameters['message']);
+        $mail->msgHTML($parameters['body']);
 
         return $mail->send();
     }

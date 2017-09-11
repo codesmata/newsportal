@@ -5,7 +5,6 @@ namespace App\Listeners;
 use App\Events\UserRegistered;
 use App\Utils\Mailer;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Utils\Mailer as Mail;
 
 class SendEmailVerification implements ShouldQueue
 {
@@ -31,14 +30,20 @@ class SendEmailVerification implements ShouldQueue
         $parameters['address'] = $user->email;
         $parameters['name'] = $user->name;
         $parameters['subject'] = 'Email Verification';
-        $parameters['body'] = $this->buildVerificationMessage($user->email_token);
+        $parameters['body'] = $this->buildVerificationMessage($user->email, $user->email_token);
 
         Mailer::sendMail($parameters);
     }
 
-    public function buildVerificationMessage($emailToken)
+    /**
+     * @param $email
+     * @param $emailToken
+     * @return string
+     */
+    public function buildVerificationMessage($email, $emailToken)
     {
-        $link = config('app.url').'/verify/'.$emailToken;
+        $email = base64_encode($email);
+        $link = config('app.url').'/verify/'.$email.'?h='.$emailToken;
         return
             "<p>Hi, please click the link below to verify your email and create password</p>"
             ."<a href='{$link}'>Verify</a>";

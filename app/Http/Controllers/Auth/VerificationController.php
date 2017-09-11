@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePasswordRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -17,12 +18,13 @@ class VerificationController extends Controller
      */
     public function verify(Request $request, $email)
     {
-        $hash = $request->query('hash');
+        $hash = $request->query('h');
+        $email = base64_decode($email);
         if ($user = User::where('email', $email)->first()) {
             if ($user->password || ($hash != $user->email_token)) {
                 return redirect('/login');
             }
-            return view('auth.passwords.create', ['email', $email]);
+            return view('auth.passwords.create', ['email' => $email]);
         }
 
         return redirect()->route('register');
@@ -35,9 +37,10 @@ class VerificationController extends Controller
      */
     public function createPassword(CreatePasswordRequest $request, $email)
     {
-        $user = User::where('email', $email);
+        $user = User::where('email', $email)->first();
         $user->password = bcrypt($request['password']);
         $user->save();
-        return redirect('home');
+        Auth::login($user, true);
+        return redirect('/home');
     }
 }
