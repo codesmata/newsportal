@@ -11,6 +11,8 @@ class News extends Model
 
     protected $table = "news";
 
+    protected $dates = ['deleted_at'];
+
     protected $guarded = ["id"];
 
     public function user()

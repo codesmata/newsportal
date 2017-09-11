@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateNewsRequest;
+use App\News;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -13,7 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::paginate(10);
+        return view('news.all', compact($news));
     }
 
     /**
@@ -23,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
@@ -32,9 +35,13 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateNewsRequest $request)
     {
-        //
+        $user = Auth::user();
+        $user
+            ->news()
+            ->create($request->all());
+        return redirect('user-news');
     }
 
     /**
@@ -45,30 +52,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $news = News::find($id);
+        return view('news.single', ['news' => $news]);
     }
 
     /**
@@ -79,6 +64,18 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        News::where('id', $id)->delete();
+        return redirect('user-news');
+    }
+
+    /**
+     * Get News for this user.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getUserNews()
+    {
+        $news = Auth::user()->news()->paginate(10);
+        return view('news.all', ['news' => $news]);
     }
 }

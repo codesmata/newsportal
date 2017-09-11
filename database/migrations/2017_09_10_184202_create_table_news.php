@@ -19,7 +19,6 @@ class CreateTableNews extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('phpto')->nullable()->default(NULL);
-            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });
