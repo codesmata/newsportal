@@ -37,10 +37,12 @@ class NewsController extends Controller
      */
     public function store(CreateNewsRequest $request)
     {
+
+        $photo = ($request['photo']) ? $this->processImage($request->file('photo')) : '';
         $user = Auth::user();
         $user
             ->news()
-            ->create($request->all());
+            ->create(array_merge(['photo' => $photo], $request->except(['photo'])));
         return redirect('user-news');
     }
 
@@ -77,5 +79,21 @@ class NewsController extends Controller
     {
         $news = Auth::user()->news()->paginate(10);
         return view('news.user-news', ['news' => $news]);
+    }
+
+    public function getPhoto($photo)
+    {
+        return ($photo) ? Storage::get('test-images/'.$photo) : '';
+    }
+
+    public function processImage($image)
+    {
+        $imageName = time().'.'.$image->getClientOriginalExtension();
+
+        $localStorage = \Storage::disk('local');
+        $filePath = '/test-images/' . $imageName;
+        $localStorage->put($filePath, file_get_contents($image), 'public');
+
+        return $imageName;
     }
 }

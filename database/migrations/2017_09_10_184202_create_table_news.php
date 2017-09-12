@@ -18,7 +18,7 @@ class CreateTableNews extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->text('body');
-            $table->string('phpto')->nullable()->default(NULL);
+            $table->string('photo')->nullable()->default(NULL);
             $table->softDeletes();
             $table->timestamps();
         });

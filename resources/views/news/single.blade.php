@@ -26,7 +26,7 @@
         <div id="printPdf" class="row">
             <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 well">
                 <div id="post-frame">
-                    {{--<img src="{{$news->photo}}">--}}
+                    <img src="/photos/{{$news->photo}}">
                     <p><small><span>Uploaded by: {{str_limit("{$news->user->name} ", $limit = 20, $end = '...')}}</span>, {{$news->created_at->diffForHumans()}}</small></p>
                 </div>
                 <div id="description">

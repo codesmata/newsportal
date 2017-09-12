@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/news') }}">
                         {{ config('app.name', 'News Portal ') }}
                     </a>
                 </div>
