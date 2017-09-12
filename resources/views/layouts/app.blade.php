@@ -81,6 +81,23 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js" integrity="sha256-4JY5MVcEmAVSuS6q4h9mrwCm6KNx91f3awsSQgwu0qc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    {{--<script src="{{ URL::asset('js/html2pdf/jspdf.js') }}"></script>
+    <script src="{{ URL::asset('js/html2pdf/from_html.js') }}"></script>
+    <script src="{{ URL::asset('js/html2pdf/cell.js') }}"></script>
+    <script src="{{ URL::asset('js/html2pdf/split_text_to_size.js') }}"></script>
+    <script src="{{ URL::asset('js/html2pdf/standard_fonts_metrics.js') }}"></script>
+    <script src="{{ URL::asset('js/html2pdf/convert2pdf.js') }}"></script>--}}
+
+    <script src="{{ URL::asset('js/htmlpdf/jspdf.min.js') }}"></script>
+    <script src="{{ URL::asset('js/htmlpdf/html2canvas.min.js') }}"></script>
+    <script src="{{ URL::asset('js/htmlpdf/html2pdf.js') }}"></script>
+
+    @yield('script')
 </body>
 </html>

@@ -41,6 +41,6 @@ class VerificationController extends Controller
         $user->password = bcrypt($request['password']);
         $user->save();
         Auth::login($user, true);
-        return redirect('/home');
+        return redirect('/user-news');
     }
 }

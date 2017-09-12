@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::paginate(10);
-        return view('news.all', compact($news));
+        return view('news.all', ['news' => $news]);
     }
 
     /**
@@ -76,6 +76,6 @@ class NewsController extends Controller
     public function getUserNews()
     {
         $news = Auth::user()->news()->paginate(10);
-        return view('news.all', ['news' => $news]);
+        return view('news.user-news', ['news' => $news]);
     }
 }
