@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\CustomTraits;
+
 use App\News;
 use Illuminate\Support\Facades\URL;
 
@@ -30,7 +31,8 @@ trait NewsFeed
                     $newsArticle->user->name,
                     URL::to('/news'.$newsArticle->id),
                     $newsArticle->created,
-                    $newsArticle->body);
+                    $newsArticle->body
+                );
             }
         }
 
