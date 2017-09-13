@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1752d62883e4442b671502812b9a8c9a",
-    "content-hash": "e40c77e987a3ccef67a51e449c99f739",
+    "hash": "7a8b4b5524411eec246afeb2171512d2",
+    "content-hash": "f8d853efc22d17e3dc1ad4cfe8877576",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1050,6 +1050,57 @@
                 "uuid"
             ],
             "time": "2017-08-04 13:39:04"
+        },
+        {
+            "name": "roumen/feed",
+            "version": "v2.10.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravelium/laravel-feed.git",
+                "reference": "ffbdb58f2ef41c7cb5d3bcd0aec2273e8eabc58b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravelium/laravel-feed/zipball/ffbdb58f2ef41c7cb5d3bcd0aec2273e8eabc58b",
+                "reference": "ffbdb58f2ef41c7cb5d3bcd0aec2273e8eabc58b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.0",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Feed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@crimsson.com",
+                    "homepage": "https://roumen.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple feed generator for Laravel.",
+            "homepage": "https://roumen.it/projects/laravel-feed",
+            "keywords": [
+                "atom",
+                "feed",
+                "generator",
+                "laravel",
+                "rss"
+            ],
+            "time": "2017-03-22 17:31:36"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2210,16 +2261,16 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "1.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "144c307535e82c8fdcaacbcfc1d6d8eeb896687c"
+                "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/144c307535e82c8fdcaacbcfc1d6d8eeb896687c",
-                "reference": "144c307535e82c8fdcaacbcfc1d6d8eeb896687c",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
+                "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
                 "shasum": ""
             },
             "require": {
@@ -2260,7 +2311,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2015-12-27 11:43:31"
+            "time": "2017-09-11 18:02:19"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

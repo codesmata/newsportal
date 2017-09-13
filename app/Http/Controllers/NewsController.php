@@ -2,12 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CustomTraits\NewsFeed;
 use App\Http\Requests\CreateNewsRequest;
 use App\News;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 
 class NewsController extends Controller
 {
+    use NewsFeed;
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => [
+            'store',
+            'destroy',
+            'getUserNews',
+        ]]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +68,11 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::find($id);
-        return view('news.single', ['news' => $news]);
+
+        if ($news) {
+            return view('news.single', ['news' => $news]);
+        }
+        return abort(404);
     }
 
     /**

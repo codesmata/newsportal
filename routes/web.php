@@ -13,8 +13,9 @@
 
 Route::get('/', 'NewsController@index');
 
-$excludeRoutes = ['except' => ['edit', 'update']];
+Route::get('/home', 'HomeController@index')->name('home');
 
+$excludeRoutes = ['except' => ['edit', 'update']];
 Route::resource('/news', 'NewsController', $excludeRoutes);
 
 Route::get('user-news', 'NewsController@getUserNews');
@@ -27,7 +28,7 @@ Route::get('/verify/{email}', 'Auth\VerificationController@verify')->name('verif
 
 Route::post('/verify/{email}/create-password', 'Auth\VerificationController@createPassword');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('rss-feed', 'NewsController@generateNewsFeed');
 
 Route::get('photos/{photo}', function ($photo) {
     $path = storage_path().'/app/test-images/' . $photo;
