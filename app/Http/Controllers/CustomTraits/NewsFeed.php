@@ -15,7 +15,7 @@ trait NewsFeed
         $feed->setCache(60, 'laravelFeedKey');
         
         if (!$feed->isCached()) {
-            $news = News::orderBy('created_at', 'desc')->take(20)->get();
+            $news = News::orderBy('created_at', 'desc')->take(10)->get();
             
             $feed->title = 'News Feed';
             $feed->description = 'News Feed for RSS';
