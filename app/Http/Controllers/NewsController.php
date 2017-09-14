@@ -72,7 +72,7 @@ class NewsController extends Controller
         if ($news) {
             return view('news.single', ['news' => $news]);
         }
-        return abort(404);
+        return view('error.404');
     }
 
     /**
